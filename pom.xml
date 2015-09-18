@@ -7,7 +7,9 @@
   <name>springmvc-maven</name>
   <description>simple demo about how to use maven combine spring mvc</description>
   <build>
-    <sourceDirectory>src</sourceDirectory>
+  <!-- 使用默认的文件路径 -->
+   <!-- 生成的war文件名 避免添加版本号 -->
+    <finalName>easy-springmvc-maven</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -22,8 +24,8 @@
         <configuration> 
         <version>3.0 </version> 
         <!-- maven的web项目默认的webroot是在src\main\webapp。如果在此目录下找不到web.xml就抛出webxml attribute is required的异常 -->
-        <!-- 需要在pom.xml中增加<webResources>配置 -->
-        <webXml>WebContent\WEB-INF\web.xml</webXml>
+        <!-- 需要在pom.xml中增加<webXml>配置 -->
+        <!-- <webXml>WebContent\WEB-INF\web.xml</webXml> -->
         </configuration> 
        </plugin>
     </plugins>
@@ -68,6 +70,18 @@
 		<version>${spring.version}</version>
 	</dependency>
 	<!-- spring mvc dependencies end -->
+	<!-- 解决页面访问时发生错误: java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/Config - start -->
+	<dependency>
+		<groupId>jstl</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
+	<dependency>
+		<groupId>apache-taglibs</groupId>
+		<artifactId>standard</artifactId>
+		<version>1.1.2</version>
+	</dependency>
+	<!-- end -->
   </dependencies>
   
   <properties>
